@@ -14,6 +14,19 @@ app.get('/api/animals', (req, res) => {
     res.json(results);
 })
 
+// req.params --> the param object needs to be defined in the route path. 
+// definiation: <route>/:<parameterName> <--> URL: http://localhost:3001/api/animals/1
+
+// req.query is multifaceted, often combining multiple parameters, whereas req.param is specific to a single property, often intended to retrieve a single record.
+app.get('/api/animals/:id', (req, res) => {
+  const result = findById(req.params.id, animals);
+  if (result) {
+    res.json(result);
+  } else {
+    res.send(404)
+  }
+});
+
 app.listen(PORT, () => console.log('API now on port 3001'));
 
 
@@ -54,4 +67,9 @@ function filterByQuery(query, animalsArray) {
     }
     // return the filtered results:
     return filteredResults;
+  }
+
+  function findById(id, animalsArray) {
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
   }
