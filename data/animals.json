@@ -108,6 +108,28 @@
         "hungry"
       ],
       "id": "10"
+    },
+    {
+      "name": "sdf",
+      "species": "sdf",
+      "diet": "folivore",
+      "personalityTraits": [
+        "hungry",
+        "zany",
+        "anxious"
+      ],
+      "id": "11"
+    },
+    {
+      "name": "sdf",
+      "species": "sdf",
+      "diet": "folivore",
+      "personalityTraits": [
+        "hungry",
+        "zany",
+        "anxious"
+      ],
+      "id": "11"
     }
   ]
 }

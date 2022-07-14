@@ -12,6 +12,25 @@ app.use(express.urlencoded({ extended: true}));
 // parse incoming JSON data
 app.use(express.json());
 
+// setup static file directory path
+// provide a file path to a location in our application (in this case, the public folder)
+// instruct the server to make these files static resources.
+// This means that all of our front-end code can now be accessed without having a specific server endpoint created for it!
+app.use(express.static('public'));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'))
+});
+
+
+app.get('/animals', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/animals.html'));
+})
+
+app.get('/zookeepers', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+})
+
 
 app.get('/api/animals', (req, res) => {
     let results = animals;
@@ -49,6 +68,19 @@ app.post('/api/animals', (req, res) => {
   }
   //  using res.json() to send the data back to the client.
 })
+
+// Wildcard Routes
+// The * will act as a wildcard, meaning any route that wasn't previously defined will 
+// fall under this request and will receive the homepage as the respoinse
+// Thus, requests for /about or /contact or /membership will essentially be the same now.
+// The order of routes matters! 
+  // The * route should alwasys come last.
+  // Ohterwise, it will take precedence over named routes. 
+  // and you won't see what you expect to see on routes like /zookeeper.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+})
+  
 
 app.listen(PORT, () => console.log('API now on port 3001'));
 

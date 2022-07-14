@@ -68,3 +68,9 @@
 - validating data is a very important part of building an application because it allows our app to look for values in a consistent fashion without any "what if" scenarios.
 - We can add as much or as little validation as we want—it's completely up to us how strict we need to be.
 
+# Middleware
+- The middleware is a helper funtion works between request and response cycle.
+
+# Route naming patterns
+- a route that has the term api in it will deal in transference of JSON data, 
+- whereas a more normal-looking endpoint such as /animals should serve an HTML page.
